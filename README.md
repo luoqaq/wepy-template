@@ -1,6 +1,6 @@
 # wepy-template
 
-wepy的模板-加入es6的promise和async/await用法；加入tip弹框工具；加入http请求模板
+微信小程序-wepy项目的模板
 
 为了方便之后快速开始wepy小程序的开发，故写了一个wepy小程序的简单模板为以后开启开发简化创建流程。
 
