@@ -1,0 +1,44 @@
+<template>
+<view class="container">
+    Welcome to home
+</view>
+</template>
+
+<script>
+  import wepy from 'wepy'
+  import tip from '@/utils/tip'
+  import api from '@/http/api'
+
+  export default class Home extends wepy.page{
+    config = {
+      navigationBarTitleText: 'HOME'
+    }
+    components = {
+    }
+
+    mixins = []
+
+    data = {
+    }
+
+    onLoad() {
+    }
+
+    computed = {
+      
+    }
+
+    methods = {
+
+    }
+
+    events = {
+    }
+  }
+</script>
+
+<style lang="less">
+
+</style>
+
+

@@ -1,0 +1,91 @@
+<style lang="less">
+page {
+  height: 100%;
+}
+  .container {
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    padding: 20% 10%;
+    box-sizing: border-box;
+    .favicon {
+      width: 30%;
+    }
+    .item {
+      margin-top: 10%;
+      font-size: 34rpx;
+      color: #333;
+    }
+    .button {
+      width: 100%;
+      margin-top: 10%; 
+    }
+  }
+</style>
+<template>
+  <view class="container">
+    <image class="favicon" src="../images/favicon.gif" mode="widthFix"></image>
+    <view class="item"><text>申请获取以下权限:\n获取您的公开信息（头像、昵称等）</text></view>
+    <view></view>
+    <button class="button" type="primary" open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="onGotUserInfo">授权</button>
+  </view>
+</template>
+
+<script>
+  import wepy from 'wepy'
+  import Panel from '@/components/panel' // alias example
+  import Counter from 'counter' // alias example
+  import List from '../components/list' // aliasFields example
+  import moduleA from 'module-a' // aliasFields ignore module example
+  import Group from '../components/group'
+  import Toast from 'wepy-com-toast'
+  import testMixin from '../mixins/test'
+
+  export default class Index extends wepy.page {
+    config = {
+      navigationBarTitleText: '授权'
+    }
+    components = {
+      panel: Panel,
+      counter1: Counter,
+      counter2: Counter,
+      list: List,
+      group: Group,
+      toast: Toast
+    }
+
+    mixins = []
+
+    data = {
+    }
+
+    async onGotUserInfo (e) {
+
+       if (e.detail.errMsg == 'getUserInfo:ok') {
+         wepy.setStorageSync('userInfo', e.detail.userInfo) //将userInfo保存
+
+         const res = await wepy.login(); //获取用户登录信息（code）
+         let code = res.code
+
+         wepy.redirectTo({url: 'home'}) //重定向至home（为了不让其可以跳回）
+       }
+    }
+
+    onLoad() {
+      if (wepy.getStorageSync('userInfo')) {
+         wepy.redirectTo({url: 'home'}) //重定向至home（为了不让其可以跳回）        
+      }
+    }
+
+    computed = {
+      
+    }
+
+    methods = {
+    }
+
+    events = {
+    }
+
+  }
+</script>
